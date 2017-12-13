@@ -3,10 +3,11 @@
     <head>
         <title>Budget Organizer</title>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
       	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
       	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+        <script> var org = <%- JSON.stringify(org) %> </script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -27,3 +28,22 @@
                 </div>
             </div>
         </nav>
+        <div class='container'>
+            <h1>Budget for <%= org.name %>
+              <a href="/budget/<%= org._id %>/new"><i class="fa fa-plus"></i></a>
+              <a href="/organizations/<%= org._id %>/invite"><i class="fa fa-user-plus"></i></a>
+            </h1>
+            <ul id="organization_container">
+              <% var curSpending = 0 %>
+              <% for (budgetEvent of org.budgetEvent) { %>
+                <% var date = new Date(budgetEvent.updatedDate) %>
+                <% curSpending += budgetEvent.budgetAmount %>
+                <li><span id="<%= budgetEvent._id %>"><i class="fa fa-trash"></i></span>
+                  <%= budgetEvent.author.username %> used $<%= budgetEvent.budgetAmount %> on <%= date.toDateString() %> for <%= budgetEvent.name %></li></a>
+              <% } %>
+          	</ul>
+            <h1>Remaining Budget: $<%= org.totalBudget - curSpending %>
+            <script type="text/javascript" src="../js/budgetEvent.js"></script>
+        </div>
+
+        <% include partials/footer %>

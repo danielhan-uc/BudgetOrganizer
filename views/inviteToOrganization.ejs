@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Organizer</title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+        <link rel="stylesheet" type="text/css" href="/css/form.css">
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+      	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
+      	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+    </head>
+<body>
+  <div class="container">
+    <h1 class="title">Invite Friend to Your Organization</h1>
+    <form class="organization_form" action="/organizations/<%=id%>/invite" method="post">
+        <p><input class="organization_name input_field" type="text" placeholder="username" name="username"></p>
+        <p><input class="organization_submit" type="submit" value="Submit"></p>
+    </form>
+    <div class="login_container">
+        <a class="login_link" href="/organizations">Back</a>
+    </div>
+  </div>
+<% include partials/footer %>

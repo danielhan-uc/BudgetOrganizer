@@ -1,0 +1,22 @@
+<% include partials/header %>
+<script> var currentUser = currentUser %> </script>
+<div class='container'>
+    <!-- <div class="jumbotron">
+        <div class="container">
+            <% if(!currentUser){ %>
+                <h1>Welcome to Budget Orginizer</h1>
+            <% } else { %>
+                <h1>Welcome to Budget Organizer - <%= currentUser.name %></h1>
+            <% } %>
+        </div>
+    </div> -->
+    <h1>Your Organizations <a href="/organizations/new"><i class="fa fa-plus"></i></a></h1>
+    <ul id="organization_container">
+      <% for (orgs of myOrganizations) { %>
+          <a href="/organizations/<%= orgs._id %>"><li><span><i class="fa fa-check"></i></span><%= orgs.name %></li></a>
+      <% } %>
+  	</ul>
+    <script type="text/javascript" src="../js/organizations.js"></script>
+</div>
+
+<% include partials/footer %>
